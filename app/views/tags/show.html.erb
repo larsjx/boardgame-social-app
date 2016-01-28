@@ -1,0 +1,23 @@
+<h3 class="text-center pad-15"><%= @tag.title %></h3>
+<div class="collection">
+  <% if @games.count > 0 %>
+    <ul class="no-list margin-left">
+      <% @games.each do |game|  %>
+        <li class="pad-15">
+          <%= form_tag("/games/#{game.id}/taggings/#{@tag.id}", id: 'tag_form',  method: "delete") do %>
+            <button type="submit" class="minus-sign fa fa-minus-circle fa-2 fa-fw"></button>
+          <% end %>
+          <a href="/games/<%= game.id %>">
+            <img src="<%= game.thumbnail_url %>" class="tiny-pic" />
+            <%= game.name %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+
+    <p class="text-center pad-10"><em>No games belong to this category. Suggest the admins add some!</em></p>
+
+  <% end %>
+
+</div>
